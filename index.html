@@ -1,1 +1,16 @@
-test
+<div id='nimbus-interact'></div>
+<script>
+  let interval = setInterval(() => {
+    if (window.Nimbus && window.Nimbus.isLoaded) {
+      window.Nimbus.Interact({
+        widgetKey: "e3ce8a5436134ff4a0148bd77fe73e7b",
+        contactId: "3c18c1f0-e796-4d9b-b2fc-f17e57db608f",
+        presenceSubscription: "signalR",
+        initialModality:"video"
+      });
+      clearInterval(interval);
+    }
+  }, 100);
+</script>
+<script id='nimbus-bootstrap' src='https://interact.de-01.luware.cloud/static/js/bootstrap.js'
+  publicurl='https://interact.de-01.luware.cloud'></script>
