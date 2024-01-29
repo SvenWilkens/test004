@@ -1,0 +1,255 @@
+<!doctype html><html><head><meta charset="utf-8"/><title></title><style>div{
+            padding: 10px;
+        }</style></head><body><h3>Test page of Interact SDK</h3><div><div style="border:1px solid black; padding: 10px; width:800px;"><span>Agent: </span><input id="agentName1" disabled="disabled"/><br/><span>Agent: </span><input id="agentName2" disabled="disabled"/><br/><span></span><div><span>UserName: </span><input id="userName"/><br/><span>Email: </span><input id="email"/></div><div style="margin: 5px;"><div style="border:1px solid black; padding: 10px; width:700px;"><div><span>ApiUrl: </span><input id="apiUrl1" value="https://interact.stage.nimbdev.com/api/interact/v1"><br/><span>WidgetKey: </span><input id="widgetKey1" value="fbd05ceb883541adba8c8a244c31c0be"><br/><button id="initSDK1" onclick="initSDK1()">Init sdk 1</button></div><div><span>ApiUrl: </span><input id="apiUrl2"><br/><span>WidgetKey: </span><input id="widgetKey2"><br/><button id="initSDK2" onclick="initSDK2()">Init sdk 2</button><br/></div><span>Token:</span><br/><textarea type="text" id="token" style="margin:10px;width:400px;height:200px;"></textarea><br/><button id="updateToken1" onclick="updateToken(firstSDK)">update Token1</button> <button id="updateToken2" onclick="updateToken(secondSDK)">update Token2</button><br/><br/><span>ContactId 1: </span><input id="contactId_status" value="a4d9db3e-5009-455b-94d5-e430fe12d139"><br/><button id="getContactStatus1" onclick="getContactStatus(firstSDK, 'agentName1')">getContactStatus</button><br/><button id="getContactStatus2" onclick="getContactStatus(secondSDK, 'agentName2')">getContactStatus2</button><br/><button id="getContactPresence1" onclick="getContactPresence(firstSDK, 'agentName1')">getContactPresence</button> <button id="getContactPresence2" onclick="getContactPresence(secondSDK, 'agentName2')">getContactPresence2</button><br/><div style="border:1px solid black; padding: 10px; width:600px;"><label>Presence Only</label> <span>ContactId 1: </span><input id="contactId1" value="a4d9db3e-5009-455b-94d5-e430fe12d139"><br/><span>ContactId 2: </span><input id="contactId2" value="1cca9463-65f1-49e4-a8d6-ceef07510df7"><br/><div><button title="subscribeToPresenceOnly" onclick="subscribeToPresence(firstSDK)">subscribe</button> <button title="unsubscribeToPresenceOnly" onclick="unsubscribeToPresence(firstSDK)">unsubscribe</button></div><br/><div><button title="subscribeToPresenceOnly" onclick="subscribeToPresence(secondSDK)">subscribe 2</button> <button title="unsubscribeToPresenceOnly" onclick="unsubscribeToPresence(secondSDK)">unsubscribe 2</button></div></div></div><br/><br/><br/><br/><div style="border:1px solid black; padding: 10px; width:600px;"><label>Static Presence Only (one tenant)</label> <span>ApiUrl: </span><input id="st_apiUrl" value="https://interact.stage.nimbdev.com/api/interact/v1"><br/><span>WidgetKey: </span><input id="st_widgetKey" value="fbd05ceb883541adba8c8a244c31c0be"><br/><span>ContactId 1: </span><input id="st_contactId1" value="a4d9db3e-5009-455b-94d5-e430fe12d139"><br/><span>ContactId 2: </span><input id="st_contactId2" value="1cca9463-65f1-49e4-a8d6-ceef07510df7"><br/><div><button title="getContactStatus" onclick="getContactStatusStatic()">Get Status</button> <button title="getContactPresence" onclick="getContactPresenceStatic()">Get Presence</button> <button title="subscribeToPresenceOnly" onclick="subscribeToStaticPresence()">subscribe</button> <button title="unsubscribeToPresenceOnly" onclick="unsubscribeToStaticPresence()">unsubscribe</button></div><br/></div><br/><br/></div><textarea id="details" style="margin:10px;width:600px;height:400px;"></textarea></div></div><script src="./nimbus.interact.presences.sdk.js"></script><script>let firstSDK = {
+            sdk: null,
+            settings:null
+        };
+        let  secondSDK = {
+            sdk: null,
+            settings:null
+        };
+
+        /* Armin
+            widgetKey: "085d317597ea46e191557a6059281c37",
+            contactId: "bf19b0f7-d77b-4189-8296-9b7b53457708",
+            presenceSubscription: "signalR"
+        */
+
+        /*
+            Interact CC
+             widgetKey: "fbd05ceb883541adba8c8a244c31c0be",
+            contactId: "a4d9db3e-5009-455b-94d5-e430fe12d139",
+            presenceSubscription: "signalR"
+        */
+
+
+
+
+        // var publicUserId = "1cca9463-65f1-49e4-a8d6-ceef07510df7"; //interact.bb stage env
+        //var publicUserId = "a4d9db3e-5009-455b-94d5-e430fe12d139";
+        var publicUserId = "a4d9db3e-5009-455b-94d5-e430fe12d139"; // interact.cc stage env
+        var publicUserId2 = "f56a5dd3-32f0-446a-9d36-918ba7257adc"; //koya, local deployment for interact.bb
+        let baseSettings, initSettings, presenceSettings;
+
+        // //stage environment
+        // let defaults = {
+        //     widgetKey: "c070dfa294ad40a9aa71868825b97d83",
+        //     apiUrl: "https://interact.stage.nimbdev.com/api/interact/v1",
+        //     contactId: "1cca9463-65f1-49e4-a8d6-ceef07510df7" // interact.bb stage env
+        // };
+
+        //stage environment
+        let defaults = {
+            widgetKey: "b2264469487d49b68936035587788869",
+            apiUrl: "https://interact.us-01.stage.nimbdev.com/api/interact/v1"
+        };
+
+        // //koya local
+        // let defaults = {
+        //     widgetKey: "a0e4f78eb7ee4dd5998215858fe9a45a",
+        //     apiUrl: "https://localhost:44386/v1",
+        //     contactId: "f56a5dd3-32f0-446a-9d36-918ba7257adc" //koya, local deployment for interact.bb
+        // };
+
+      //  updateContactSettings();
+        presencesSDK.errors(onError);
+       // getContactStatus();
+      
+        let first = true;
+        let sdk;
+
+        function initSDK1(){
+            let widgetKey = getQueryOrInputValue('widgetKey1');
+            let apiUrl = getQueryOrInputValue('apiUrl1');
+            // let apiUrl =  "https://interact.stage.nimbdev.com/api/interact/v1";
+
+            let settings = {widgetKey,apiUrl}
+            firstSDK.settings = settings;
+            firstSDK.sdk = initSDK(settings, 1);
+        }
+        function initSDK2(){
+            let widgetKey = getQueryOrInputValue('widgetKey2');
+            let apiUrl = getQueryOrInputValue('apiUrl2');
+
+            let settings = {widgetKey,apiUrl}
+            secondSDK.settings = settings;
+            secondSDK.sdk = initSDK(settings, 2);
+        }
+
+        function initSDK(settings, number){
+            let sdk =   new presencesSDK(settings);
+            appendLog("SDK is inited "+ number);
+            return sdk;
+        }
+        
+        function updateToken(sdkDetails){
+            let token = document.getElementById('token').value;
+            sdkDetails.sdk.setAuthorization(token);
+            appendLog("Token is updated");
+        }
+
+        async function getContactStatus(sdkDetails, nameId){
+            try{
+                let contactId = getQueryOrInputValue("contactId_status");
+                let status = await sdkDetails.sdk.getContactStatus(contactId);
+                if(status.hasActiveConversation){
+                    startVideo(sdkDetails);
+                }
+
+                document.getElementById(nameId).value = status.displayName;
+
+                appendLog("Contact status is " + JSON.stringify(status));
+            }
+            catch(er){
+                appendLog("Contact status error " + er);
+            }
+        }
+        async function getContactPresence(sdkDetails, nameId){
+            try{
+                let contactId = getQueryOrInputValue("contactId_status");
+                let presence = await sdkDetails.sdk.getContactPresence(contactId);
+                
+
+                appendLog("Contact presence is " + JSON.stringify(presence));
+            }
+            catch(er){
+                appendLog("Contact status error " + er);
+            }
+        }
+
+
+     
+        async function subscribeToPresence(sdkDetails) {
+                //presencesSDK.presence.init()
+              await sdkDetails.sdk.initPresence("signalR");
+
+              let contactId1 = getQueryOrInputValue("contactId1");
+              let contactId2 = getQueryOrInputValue("contactId2");
+
+            sdkDetails.sdk.presence.on([
+                { publicUserId: contactId1, callbacks: { onChanged: onPresenceChanged }},
+                { publicUserId: contactId2, callbacks: { onChanged: onPresenceChanged }}
+            ]);
+
+            appendLog("Subscribed to presence");
+        }
+
+        async function subscribeToStaticPresence(){
+            let contactId1 = document.getElementById("st_contactId1")?.value;
+            let contactId2 = document.getElementById("st_contactId2")?.value;
+            let apiUrl = document.getElementById("st_apiUrl")?.value;
+            let widgetKey = document.getElementById("st_widgetKey")?.value;
+
+            await presencesSDK.presence.init({type:"signalR", widgetKey:widgetKey, apiUrl:apiUrl});
+            await presencesSDK.presence.on([
+                { publicUserId: contactId1, callbacks: { onChanged: onPresenceChanged }},
+                { publicUserId: contactId2, callbacks: { onChanged: onPresenceChanged }}
+            ]);
+
+            appendLog("Subscribed to static presence");
+        }
+
+        async function unsubscribeToPresence(sdkDetails) {
+            let contactId1 = getQueryOrInputValue("contactId1");
+            let contactId2 = getQueryOrInputValue("contactId2");
+
+            await sdkDetails.sdk.presence.off([
+                {publicUserId: contactId1 || defaults.contactId},
+                {publicUserId: contactId2 || defaults.contactId}
+            ]);
+
+            appendLog("Unsubscribed to presence");
+        }
+        async function unsubscribeToPresence(sdkDetails) {
+            let contactId1 = document.getElementById("st_contactId1")?.value;
+            let contactId2 = document.getElementById("st_contactId2")?.value;
+            await sdkDetails.sdk.presence.off([
+                {publicUserId: contactId1 || defaults.contactId},
+                {publicUserId: contactId2 || defaults.contactId}
+            ]);
+
+            appendLog("Unsubscribed to presence");
+        }
+
+
+        async function getContactStatusStatic() {
+            try{
+                updateContactSettings();
+                let status =  await presencesSDK.getContactStatus(initSettings);
+                if(status.hasActiveConversation){
+                    startVideo();
+                }
+                appendLog("Contact status is " + JSON.stringify(status));
+            }
+            catch(er){
+                appendLog("Contact status error " + er);
+            }
+        }
+        async function getContactPresenceStatic() {
+            try{
+                let contactId1 = document.getElementById("st_contactId1")?.value;
+                    let contactId2 = document.getElementById("st_contactId2")?.value;
+                    let apiUrl = document.getElementById("st_apiUrl")?.value;
+                    let widgetKey = document.getElementById("st_widgetKey")?.value;
+
+                let presence =  await presencesSDK.getContactPresence({contactId:contactId1,  widgetKey:widgetKey, apiUrl:apiUrl});
+              
+                appendLog("Contact status is " + JSON.stringify(presence));
+            }
+            catch(er){
+                appendLog("Contact status error " + er);
+            }
+        }
+
+   
+        function updateStaticToken(){
+            let token = getQueryOrInputValue('token');
+            presencesSDK.useAuthorization(token);
+            appendLog("Token is updated");
+        }
+
+        function updateContactSettings(){
+            let widgetKey = getQueryOrInputValue("widgetKey");
+            let apiUrl = getQueryOrInputValue("apiUrl");
+            let contactId = getQueryOrInputValue("contactId");
+
+            baseSettings = {
+                widgetKey: widgetKey || defaults.widgetKey, //lucloud stage
+                apiUrl: apiUrl || defaults.apiUrl,
+            }
+
+            initSettings = {
+                ...baseSettings,
+                contactId: contactId || defaults.contactId
+            };
+
+            initPresence = {
+                ...baseSettings,
+                type: "signalR",
+            };
+        }
+
+        function onError(error) {
+            appendLog("Some error was occurred " + JSON.stringify(error));
+        }
+        
+        function onPresenceChanged(presence) {
+            appendLog("Participant presence changed " + JSON.stringify(presence));
+        }
+
+     
+
+        function appendLog(value){
+            document.getElementById('details').append(value + '\r\n');
+        }
+
+        function getQueryOrInputValue(name){
+            let searchParams = new URLSearchParams(document.location.search);
+            let value = searchParams.get(name);
+            if (value){
+                return value;
+            }
+
+            value = document.getElementById(name)?.value;
+            return value;
+        }</script></body></html>
