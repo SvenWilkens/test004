@@ -1,25 +1,5 @@
 <div id='nimbus-interact'></div>
 <script>
-  async function subscribeToPresence() { 
-    await interactSDK.presence.on(
-      [
-        {
-          publicUserId: '3c18c1f0-e796-4d9b-b2fc-f17e57db608f', 
-          callbacks: { onChanged: onPresenceChanged }
-        },
-        {
-          publicUserId: 'ce8f0d2a-3ee5-4df1-ac0e-c46041ffb346', 
-          callbacks: { onChanged: onPresenceChanged }
-        }
-      ]
-    );
-  }
-  function onPresenceChanged(presence)
-  {
-    console.log(presence);
-  }
-</script>
-<script>
   let interval = setInterval(() => {
     if (window.Nimbus && window.Nimbus.isLoaded) {
       window.Nimbus.Interact({
