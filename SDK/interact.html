@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <h3>Test page of Interact SDK 0.3</h3>
+    <h3>Test page of Interact SDK 0.4</h3>
    
         <div class="sdk" index="">
             <div>
@@ -242,7 +242,7 @@
                 onAdded: p => onAdded(p, sdkInstance_tenantA),
                 onRemoved: p => onRemoved(p, sdkInstance_tenantA)
             })
-            sdkInstance_tenantAconversation.errors.on(e => onError(e, sdkInstance_tenantA))
+            sdkInstance_tenantA.conversation.errors.on(e => onError(e, sdkInstance_tenantA))
             sdkInstance_tenantA.conversation.screenSharing.on({
                 onScreenSharing: v => onScreenSharing(v, sdkInstance_tenantA),
                 onRemoteScreenSharing: v => onRemoteScreenSharing(v, sdkInstance_tenantA)
