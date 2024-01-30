@@ -209,6 +209,51 @@
         }
 
 
+        function addSubscriptions(
+            sdkDetails,
+            chatOnly = false,
+            restoreChat = false
+        ) {
+            let index = s0;
+
+            sdkInstance_tenantA.sdk.conversation.chat.on({
+                onMessageReceived: m => onMessageReceived(m, sdkInstance_tenantA),
+                onTypingParticipantAdded: p =>
+                    onTypingParticipantAdded(p, sdkInstance_tenantA),
+                onTypingParticipantRemoved: p =>
+                    onTypingParticipantRemoved(p, sdkInstance_tenantA),
+                onStopChat: () => onStopChat(sdkDetails),
+                onMessageDeleted: m => onMessageReceived(m, sdkInstance_tenantA),
+                onMessageEdited: m => onMessageReceived(m, sdkDetails)
+            })
+            if (chatOnly) {
+                return
+            }
+
+            // // Call related subscriptions
+            sdkInstance_tenantA.conversation.callChanged.on({
+                onStart: () => {
+                    if (restoreChat) {
+                        sdkInstance_tenantA.restoreMessages()
+                    }
+
+                    startCallback(sdkInstance_tenantA)
+                },
+                onStop: () => stopCallback(sdkInstance_tenantA),
+                onTransferStarted: () => onTransferStarted(sdkInstance_tenantA),
+                onTransferFinished: () => onTransferFinished(sdkInstance_tenantA)
+            })
+            sdkInstance_tenantA.conversation.participantsChanged.on({
+                onAdded: p => onAdded(p, sdkInstance_tenantA),
+                onRemoved: p => onRemoved(p, sdkInstance_tenantA)
+            })
+            sdkInstance_tenantAconversation.errors.on(e => onError(e, sdkInstance_tenantA))
+            sdkInstance_tenantA.conversation.screenSharing.on({
+                onScreenSharing: v => onScreenSharing(v, sdkInstance_tenantA),
+                onRemoteScreenSharing: v => onRemoteScreenSharing(v, sdkInstance_tenantA)
+            })
+        }
+
         /////////////////////END
 
 
@@ -748,50 +793,7 @@
                 : false
         }
 
-        function addSubscriptions(
-            sdkDetails,
-            chatOnly = false,
-            restoreChat = false
-        ) {
-            let index = sdkDetails.index
-
-            sdkDetails.sdk.conversation.chat.on({
-                onMessageReceived: m => onMessageReceived(m, sdkDetails),
-                onTypingParticipantAdded: p =>
-                    onTypingParticipantAdded(p, sdkDetails),
-                onTypingParticipantRemoved: p =>
-                    onTypingParticipantRemoved(p, sdkDetails),
-                onStopChat: () => onStopChat(sdkDetails),
-                onMessageDeleted: m => onMessageReceived(m, sdkDetails),
-                onMessageEdited: m => onMessageReceived(m, sdkDetails)
-            })
-            if (chatOnly) {
-                return
-            }
-
-            // // Call related subscriptions
-            sdkDetails.sdk.conversation.callChanged.on({
-                onStart: () => {
-                    if (restoreChat) {
-                        sdkDetails.sdk.restoreMessages()
-                    }
-
-                    startCallback(sdkDetails)
-                },
-                onStop: () => stopCallback(sdkDetails),
-                onTransferStarted: () => onTransferStarted(sdkDetails),
-                onTransferFinished: () => onTransferFinished(sdkDetails)
-            })
-            sdkDetails.sdk.conversation.participantsChanged.on({
-                onAdded: p => onAdded(p, sdkDetails),
-                onRemoved: p => onRemoved(p, sdkDetails)
-            })
-            sdkDetails.sdk.conversation.errors.on(e => onError(e, sdkDetails))
-            sdkDetails.sdk.conversation.screenSharing.on({
-                onScreenSharing: v => onScreenSharing(v, sdkDetails),
-                onRemoteScreenSharing: v => onRemoteScreenSharing(v, sdkDetails)
-            })
-        }
+        
 
         function removeSubscriptions(sdkDetails) {
             sdkDetails.sdk.conversation.chat.off()
