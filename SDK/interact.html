@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <h3>Test page of Interact SDK 0.1</h3>
+    <h3>Test page of Interact SDK 0.2</h3>
    
         <div class="sdk" index="">
             <div>
@@ -175,7 +175,7 @@
                 disclaimer: true
             }
             
-            try {
+      
                 const sessionId = await sdkInstance_tenantA.startConversation(
                     userDetails,
                     contactId
@@ -200,12 +200,7 @@
                 toneSequence = 0
 
                 //toggleButtons(false, 0, false, false)
-            } catch (e) {
-                appendLog(
-                    `Conversation was not started ${JSON.stringify(e ?? '')}`,
-                    0
-                )
-            }
+           
         }
 
 
