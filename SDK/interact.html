@@ -43,21 +43,13 @@
 </head>
 
 <body>
-    <h3>Test page of Interact SDK 0.5</h3>
+    <h3>Test page of Interact SDK 0.6</h3>
    
         <div class="sdk" index="">
-            <div>
-                <span>SDK </span><br /><br /><span>Agent: </span><input id="agentName"
-                    disabled="disabled" /><br /><span>Service: </span><input id="serviceName"
-                    disabled="disabled" /><br /><span>UserName: </span><input
-                    id="userName" /><br /><span>Email: </span><input
-                    id="email" /><br /><span>ApiUrl: </span><input typea="text"
-                    id="apiUrl" value="https://interact.de-01.luware.cloud/api/interact/v1/" /><br /><span>WidgetKey: </span><input
-                    id="widgetKey" value="e3ce8a5436134ff4a0148bd77fe73e7b" /><br />
-            </div>
+         
            
             <div>
-                <span>ContactId: </span><input id="contactId" value="3c18c1f0-e796-4d9b-b2fc-f17e57db608f" /><br />
+               
         
                 <button id="getContactPresence"
                     onclick="getContactPresence(this, 'contactId')">
@@ -65,19 +57,11 @@
                     onclick="startVideo(this)">
                     startVideo
                 </button>
-                <button title="startAudio" onclick="startAudio(this)">
-                    startAudio
-                </button>
-                <button title="stopCall" onclick="stopCall(this)">
-                    stopCall
-                </button>
-                <button title="getCallState" onclick="getCallState(this)">
-                    getCallState
-                </button>
+                
                 
                 <br />
             </div>
-            <hr />
+       
       
             <br /><br />
             <div class="border">
@@ -194,7 +178,7 @@
                     selfVideoId: `testSelfVideo`,
                     videoId: `testVideo`,
                     screenSharingId: `screensharing-id`
-                    //replacedAgentName: replacedName
+                    
                 }
                 await sdkInstance_tenantA.startCall(options)
                 toneSequence = 0
@@ -248,8 +232,57 @@
                 onRemoteScreenSharing: v => onRemoteScreenSharing(v, sdkInstance_tenantA)
             })
         }
+        //////// Try !!!!!!!
+        function onScreenSharing(isEnable, sdkDetails) {
+            if (sdkDetails.activeScreenSharing === isEnable) {
+                return
+            }
+            sdkDetails.activeScreenSharing = isEnable
+            appendLog(
+                'Screen sharing was ' + (isEnable ? 'started' : 'stopped'),
+                sdkDetails.index
+            )
+        }
 
-        /////////////////////END
+        function onRemoteScreenSharing(isActive, sdkDetails) {
+            appendLog(
+                'Screen sharing from the remote participant was ' +
+                (isActive ? 'started' : 'stopped'),
+                sdkDetails.index
+            )
+        }
+
+        function fillListOfDevices(index) {
+       
+
+            // List cameras and microphones.
+            navigator.mediaDevices
+                .enumerateDevices()
+                .then(function (devices) {
+                    devices.forEach(function (device) {
+                        console.log(
+                            device.kind + ': ' + device.label + ' id = ' + device.deviceId
+                        )
+                        let select =
+                            device.kind === 'videoinput'
+                                ? document.getElementById(`videos_list`)
+                                : device.kind === 'audiooutput'
+                                    ? document.getElementById(`audios_list`)
+                                    : document.getElementById(`microphones_list`)
+                        select.options[select.options.length] = new Option(
+                            device.label,
+                            device.deviceId,
+                            false,
+                            false
+                        )
+                    })
+                })
+                .catch(function (err) {
+                    console.log(err.name + ': ' + err.message)
+                })
+        }
+
+        /////////////////////END!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
         function getSdkIndex(current) {
