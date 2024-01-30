@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <h3>Test page of Interact SDK 0.2</h3>
+    <h3>Test page of Interact SDK 0.3</h3>
    
         <div class="sdk" index="">
             <div>
@@ -211,7 +211,7 @@
         ) {
             let index = 0;
 
-            sdkInstance_tenantA.sdk.conversation.chat.on({
+            sdkInstance_tenantA.conversation.chat.on({
                 onMessageReceived: m => onMessageReceived(m, sdkInstance_tenantA),
                 onTypingParticipantAdded: p =>
                     onTypingParticipantAdded(p, sdkInstance_tenantA),
