@@ -137,6 +137,7 @@
     <script src="./nimbus.interact.presences.sdk.js"></script>
     <script>
         const contactId = '3c18c1f0-e796-4d9b-b2fc-f17e57db608f';
+        const index = 0;
 
         let initSettings = {
                 widgetKey: "e3ce8a5436134ff4a0148bd77fe73e7b",
@@ -156,6 +157,59 @@
                 alert (er);
             }
         }
+
+        ///// test functions
+        async function startVideo(current, isService) {
+            let sdkDetails = sdkInstance_tenantA
+           // let index = sdkDetails.index
+          
+            let userName = 'user'
+            let email = 'test@test.de'
+        
+          
+           
+
+            let userDetails = {
+                userName: userName,
+                email: email,
+                disclaimer: true
+            }
+            
+            try {
+                const sessionId = await sdkInstance_tenantA.startConversation(
+                    userDetails,
+                    contactId
+                )
+                addSubscriptions(sdkInstance_tenantA)
+               
+                let video = getDeviceId(`videoinput`, 0)
+                let microphone = getDeviceId(`audioinput`, 0)
+                let audio = getDeviceId(`audiooutput`, 0)
+                let options = {
+                    devices: {
+                        videoId: video != 0 ? video : 'default',
+                        speakerId: audio != 0 ? audio : 'default',
+                        microphoneId: microphone != 0 ? microphone : 'default'
+                    },
+                    selfVideoId: `testSelfVideo`,
+                    videoId: `testVideo`,
+                    screenSharingId: `screensharing-id`,
+                    replacedAgentName: replacedName
+                }
+                await sdkInstance_tenantA.startCall(options)
+                toneSequence = 0
+
+                toggleButtons(false, 0, false, false)
+            } catch (e) {
+                appendLog(
+                    `Conversation was not started ${JSON.stringify(e ?? '')}`,
+                    0
+                )
+            }
+        }
+
+
+        /////////////////////END
 
 
         function getSdkIndex(current) {
@@ -248,62 +302,7 @@
             document.body.appendChild(clone.content)
         }
 
-        ///// test functions
-        async function startVideo(current, isService) {
-            let sdkDetails = getSdkDetails(current)
-            let index = sdkDetails.index
-
-            let userName = sdkDetails.settings.userName()
-            let email = sdkDetails.settings.email()
-            let contactId = isService
-                ? sdkDetails.settings.serviceId()
-                : sdkDetails.settings.contactId()
-            let replacedName = undefined
-            if (isService) {
-                const status = await sdkDetails.sdk.getServiceStatus(contactId)
-                replacedName = status.displayName
-            }
-
-            let userDetails = {
-                userName: userName,
-                email: email,
-                disclaimer: true
-            }
-            try {
-                const sessionId = await sdkDetails.sdk.startConversation(
-                    userDetails,
-                    contactId
-                )
-                addSubscriptions(sdkDetails)
-                appendLog(
-                    `Conversation is started. Session id is ${sessionId}`,
-                    index
-                )
-                let video = getDeviceId(`videoinput`, index)
-                let microphone = getDeviceId(`audioinput`, index)
-                let audio = getDeviceId(`audiooutput`, index)
-                let options = {
-                    devices: {
-                        videoId: video != 0 ? video : 'default',
-                        speakerId: audio != 0 ? audio : 'default',
-                        microphoneId: microphone != 0 ? microphone : 'default'
-                    },
-                    selfVideoId: `testSelfVideo`,
-                    videoId: `testVideo`,
-                    screenSharingId: `screensharing-id`,
-                    replacedAgentName: replacedName
-                }
-                await sdkDetails.sdk.startCall(options)
-                toneSequence = 0
-
-                toggleButtons(false, index, false, isService)
-            } catch (e) {
-                appendLog(
-                    `Conversation was not started ${JSON.stringify(e ?? '')}`,
-                    index
-                )
-            }
-        }
+        
 
         async function startAudio(current, isService) {
             let sdkDetails = getSdkDetails(current)
