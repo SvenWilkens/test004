@@ -199,7 +199,7 @@
                 await sdkInstance_tenantA.startCall(options)
                 toneSequence = 0
 
-                toggleButtons(false, 0, false, false)
+                //toggleButtons(false, 0, false, false)
             } catch (e) {
                 appendLog(
                     `Conversation was not started ${JSON.stringify(e ?? '')}`,
@@ -214,7 +214,7 @@
             chatOnly = false,
             restoreChat = false
         ) {
-            let index = s0;
+            let index = 0;
 
             sdkInstance_tenantA.sdk.conversation.chat.on({
                 onMessageReceived: m => onMessageReceived(m, sdkInstance_tenantA),
@@ -222,9 +222,9 @@
                     onTypingParticipantAdded(p, sdkInstance_tenantA),
                 onTypingParticipantRemoved: p =>
                     onTypingParticipantRemoved(p, sdkInstance_tenantA),
-                onStopChat: () => onStopChat(sdkDetails),
+                onStopChat: () => onStopChat(sdkInstance_tenantA),
                 onMessageDeleted: m => onMessageReceived(m, sdkInstance_tenantA),
-                onMessageEdited: m => onMessageReceived(m, sdkDetails)
+                onMessageEdited: m => onMessageReceived(m, sdkInstance_tenantA)
             })
             if (chatOnly) {
                 return
