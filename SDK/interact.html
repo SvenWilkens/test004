@@ -53,7 +53,10 @@
         
                 <button id="getContactPresence"
                     onclick="getContactPresence(this, 'contactId')">
-                    getContactPresence</button><br /><button title="startVideo"
+                    getContactPresence
+                </button>
+                    <br />
+                <button title="startVideo"
                     onclick="startVideo(this)">
                     startVideo
                 </button>
@@ -122,6 +125,8 @@
     <script>
         const contactId = '3c18c1f0-e796-4d9b-b2fc-f17e57db608f';
         const index = 0;
+        const screen = false;
+        fillListOfDevices(0)
 
         let initSettings = {
                 widgetKey: "e3ce8a5436134ff4a0148bd77fe73e7b",
@@ -234,14 +239,11 @@
         }
         //////// Try !!!!!!!
         function onScreenSharing(isEnable, sdkDetails) {
-            if (sdkDetails.activeScreenSharing === isEnable) {
+            if (screen === true) {
                 return
             }
-            sdkDetails.activeScreenSharing = isEnable
-            appendLog(
-                'Screen sharing was ' + (isEnable ? 'started' : 'stopped'),
-                sdkDetails.index
-            )
+            screen= true
+           
         }
 
         function onRemoteScreenSharing(isActive, sdkDetails) {
@@ -280,6 +282,12 @@
                 .catch(function (err) {
                     console.log(err.name + ': ' + err.message)
                 })
+        }
+
+        async function changeScreenSharing(current) {
+            screen = !screen
+            await sdkInstance_tenantA.toggleScreenSharing(sdkDetails.activeScreenSharing)
+           
         }
 
         /////////////////////END!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -710,18 +718,7 @@
                 appendLog(`Message was not sent  ${message}`, index)
             }
         }
-        async function changeScreenSharing(current) {
-            let sdkDetails = getSdkDetails(current)
-            let index = sdkDetails.index
-
-            sdkDetails.activeScreenSharing = !sdkDetails.activeScreenSharing
-            await sdkDetails.sdk.toggleScreenSharing(sdkDetails.activeScreenSharing)
-            appendLog(
-                'Screen sharing was changed to ' +
-                (sdkDetails.activeScreenSharing ? "'ongoing'" : "'terminated'"),
-                index
-            )
-        }
+       
 
         async function sendTone(current) {
             let sdkDetails = getSdkDetails(current)
