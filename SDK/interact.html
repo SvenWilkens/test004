@@ -40,11 +40,33 @@
         .dropdown {
             max-width: 300px;
         }
+
+        #container {
+             background-color: aqua;
+           
+            position: absolute;
+            
+            }
+        .infoi {
+            background-color: antiquewhite;
+            width: 1050px;
+            height: 800px;
+            position: relative;
+            float: right;
+            top: 0;
+            left: 0;
+        }
+        .infoBottom {
+            background-color:blue;
+        width: 2200;
+        height: 50px;
+        position: relative;
+                }
     </style>
 </head>
 
 <body>
-    <h3>Test page of Interact SDK 0.14</h3>
+    <h3>Test page of Interact SDK 0.15</h3>
    
         <div >
          
@@ -102,6 +124,25 @@
             <audio id="testAudio" class="hidden" autoplay="true"></audio>
             <video id="testPresentation" class="hidden" autoplay="true"></video>
             <video id="testScreenSharing" class="hidden" autoplay="true"></video>
+
+
+            <div id="container">
+       
+                <div class="infoi">
+                    <div lass="innendiv" id="testVideo" ></div>
+                </div> 
+                <div class="infoi">
+                    <div lass="innendiv" id="testSelfVideo" ></div>
+                </div>
+                  
+    
+              <div id="infoBottom">
+                Powerd by QUIBIQ
+              </div>
+
+
+
+
             <div id="aussendiv">
                 <div lass="innendiv" id="testVideo" ></div>
                 <div lass="innendiv" id="testSelfVideo" ></div>
