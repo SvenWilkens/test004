@@ -48,10 +48,11 @@
             
             }
         .infoi {
-            background-color: antiquewhite;
+            background-color: rgb(160, 160, 57);
             width: 1050px;
             height: 800px;
             position: relative;
+            border: 1px;
             float: right;
             top: 0;
             left: 0;
@@ -66,7 +67,7 @@
 </head>
 
 <body>
-    <h3>Test page of Interact SDK 0.15</h3>
+    <h3>Test page of Interact SDK 0.16</h3>
    
         <div >
          
@@ -128,26 +129,22 @@
 
             <div id="container">
        
-                <div class="infoi">
-                    <div lass="innendiv" id="testVideo" ></div>
+                <div class="infoi">MMM1
+                    <div class="innendiv" id="testVideo" ></div>
                 </div> 
-                <div class="infoi">
-                    <div lass="innendiv" id="testSelfVideo" ></div>
+                <div class="infoi">KKKK1
+                    <div class="innendiv" id="testSelfVideo" ></div>
                 </div>
                   
     
               <div id="infoBottom">
-                Powerd by QUIBIQ
+                1<br><b>Powerd by OLB & QUIBIQ</b>
               </div>
 
 
 
 
-            <div id="aussendiv">
-                <div lass="innendiv" id="testVideo" ></div>
-                <div lass="innendiv" id="testSelfVideo" ></div>
-                <div lass="innendiv" id="screensharing-id" ></div>
-            </div>
+          
         </div>
 
     <script src="./nimbus.interact.sdk.js"></script>
@@ -167,7 +164,7 @@
                 };
         const sdkInstance_tenantA = new interactSDK(initSettings);
         // Begin   
-        startVideo();
+       // startVideo();
         async function getContactPresence() {
             let sdkDetails = sdkInstance_tenantA
           
