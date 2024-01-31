@@ -51,10 +51,53 @@
         
        
       
-
+            <br /><br />
+            <div class="border" disabled=true>
+                <div style="margin: 5px">
+                    <span>List of devices: </span><select id="videos_list" class="dropdown">
+                        <option value="0"></option>
+                    </select><br /><span>List of speakers: </span><select id="audios_list"
+                        class="dropdown">
+                        <option value="0"></option>
+                    </select><br /><span>List of microphones: </span><select id="microphones_list"
+                        class="dropdown">
+                        <option value="0"></option>
+                    </select><br /><button title="update" onclick="updateDevices(this)">
+                        Update devices
+                    </button>
+                </div>
+                <div>
+                    <button id="changeCamera" onclick="changeCamera(this)" disabled="disabled">
+                        changeCamera
+                    </button>
+                    <button id="toggleCamera" onclick="toggleCamera(this)" disabled="disabled">
+                        mute/unmute Video
+                    </button>
+                    <button id="toggleMute" onclick="toggleMute(this)" disabled="disabled">
+                        mute/unmute Audio
+                    </button>
+                    <button id="screenSharing" onclick="changeScreenSharing(this)" >
+                        start/stop screenSharing
+                    </button>
+                </div>
+                <br />
+            </div>
+            <br />
    
-
-       
+            <div style="margin: 5px" isabled="disabled">
+                <span>Message: </span><input id="message"
+                    onkeyup="sendTypingNotification(this)" /><button id="send"
+                    onclick="sendMessage(this)" disabled="disabled">
+                    send</button><br /><span>Edit/Delete Message Id: </span><input
+                    id="message-id" /><button id="edit" onclick="editMessage(this)"
+                    disabled="disabled">
+                    Edit
+                </button>
+                <button id="delete" onclick="deleteMessage(this)" disabled="disabled">
+                    Delete
+                </button>
+            </div>
+            <textarea id="details" isabled="disabled"></textarea>
             <audio id="testAudio" autoplay="true"></audio>
             <video id="testPresentation" autoplay="true"></video>
             <video id="testScreenSharing" autoplay="true"></video>
