@@ -48,26 +48,11 @@
         <div class="sdk" index="" >
          
            
-            <div>
-               
         
-                <button id="getContactPresence"
-                    onclick="getContactPresence(this, 'contactId')">
-                    getContactPresence
-                </button>
-                    <br />
-                <button title="startVideo"
-                    onclick="startVideo(this)">
-                    startVideo
-                </button>
-                
-                
-                <br />
-            </div>
        
       
             <br /><br />
-            <div class="border">
+            <div class="border" isabled="disabled">
                 <div style="margin: 5px">
                     <span>List of devices: </span><select id="videos_list" class="dropdown">
                         <option value="0"></option>
@@ -99,7 +84,7 @@
             </div>
             <br />
    
-            <div style="margin: 5px">
+            <div style="margin: 5px" isabled="disabled">
                 <span>Message: </span><input id="message"
                     onkeyup="sendTypingNotification(this)" /><button id="send"
                     onclick="sendMessage(this)" disabled="disabled">
@@ -112,9 +97,10 @@
                     Delete
                 </button>
             </div>
-            <textarea id="details"></textarea><audio id="testAudio"
-                autoplay="true"></audio><video id="testPresentation" autoplay="true"></video><video
-                id="testScreenSharing" autoplay="true"></video>
+            <textarea id="details" isabled="disabled"></textarea>
+            <audio id="testAudio" autoplay="true"></audio>
+            <video id="testPresentation" autoplay="true"></video>
+            <video id="testScreenSharing" autoplay="true"></video>
             <div id="testVideo" style="max-width: 450px"></div>
             <div id="testSelfVideo" style="max-width: 300px"></div>
             <div id="screensharing-id" style="max-width: 450px"></div>
