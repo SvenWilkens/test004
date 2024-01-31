@@ -45,7 +45,7 @@
 <body>
     <h3>Test page of Interact SDK 0.14</h3>
    
-        <div class="sdk" index="" class="hidden"  >
+        <div index="" class="hidden"  >
          
            
         
@@ -101,9 +101,9 @@
             <audio id="testAudio" autoplay="true"></audio>
             <video id="testPresentation" autoplay="true"></video>
             <video id="testScreenSharing" autoplay="true"></video>
-            <div id="testVideo" style="max-width: 450px"></div>
-            <div id="testSelfVideo" style="max-width: 300px"></div>
-            <div id="screensharing-id" style="max-width: 450px"></div>
+            <div id="testVideo" ></div>
+            <div id="testSelfVideo" ></div>
+            <div id="screensharing-id" ></div>
         </div>
 
     <script src="./nimbus.interact.sdk.js"></script>
@@ -123,7 +123,7 @@
                 };
         const sdkInstance_tenantA = new interactSDK(initSettings);
         // Begin   
-        startVideo();
+        //startVideo();
         async function getContactPresence() {
             let sdkDetails = sdkInstance_tenantA
           
