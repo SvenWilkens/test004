@@ -9,7 +9,8 @@
         div {
             padding: 10px;
         }
-
+        #aussendiv { display: flex; }
+        .innendiv { width:150px; }
         .container {
             border: 1px solid blue;
         }
@@ -101,10 +102,10 @@
             <audio id="testAudio" class="hidden" autoplay="true"></audio>
             <video id="testPresentation" class="hidden" autoplay="true"></video>
             <video id="testScreenSharing" class="hidden" autoplay="true"></video>
-            <div>
-                <div id="testVideo" ></div>
-                <div id="testSelfVideo" ></div>
-                <div id="screensharing-id" ></div>
+            <div id="aussendiv">
+                <div lass="innendiv" id="testVideo" ></div>
+                <div lass="innendiv" id="testSelfVideo" ></div>
+                <div lass="innendiv" id="screensharing-id" ></div>
             </div>
         </div>
 
