@@ -45,14 +45,14 @@
 <body>
     <h3>Test page of Interact SDK 0.14</h3>
    
-        <div class="sdk" index="" >
+        <div class="sdk" index="" class="hidden"  >
          
            
         
        
       
-            <br /><br />
-            <div class="border" disabled=true>
+           
+            <div class="hidden"  disabled=true>
                 <div style="margin: 5px">
                     <span>List of devices: </span><select id="videos_list" class="dropdown">
                         <option value="0"></option>
@@ -66,7 +66,7 @@
                         Update devices
                     </button>
                 </div>
-                <div>
+                <div  class="hidden" >
                     <button id="changeCamera" onclick="changeCamera(this)" disabled="disabled">
                         changeCamera
                     </button>
@@ -84,7 +84,7 @@
             </div>
             <br />
    
-            <div style="margin: 5px" isabled="disabled">
+            <div class="hidden"  style="margin: 5px" isabled="disabled">
                 <span>Message: </span><input id="message"
                     onkeyup="sendTypingNotification(this)" /><button id="send"
                     onclick="sendMessage(this)" disabled="disabled">
@@ -97,7 +97,7 @@
                     Delete
                 </button>
             </div>
-            <textarea id="details" isabled="disabled"></textarea>
+            <textarea id="details" class="hidden"  isabled="disabled"></textarea>
             <audio id="testAudio" autoplay="true"></audio>
             <video id="testPresentation" autoplay="true"></video>
             <video id="testScreenSharing" autoplay="true"></video>
@@ -113,7 +113,7 @@
         const index = 0;
         var screen = true;
         var activeScreenSharing = false;
-        fillListOfDevices(0);
+       fillListOfDevices(0);
       
 
         let initSettings = {
