@@ -128,7 +128,7 @@
         var screen = true;
         var activeScreenSharing = false;
         fillListOfDevices(0);
-        startVideo(this);
+      
 
         let initSettings = {
                 widgetKey: "e3ce8a5436134ff4a0148bd77fe73e7b",
@@ -136,7 +136,8 @@
                 type: "signalR"
                 };
         const sdkInstance_tenantA = new interactSDK(initSettings);
-
+        // Begin   
+        startVideo();
         async function getContactPresence() {
             let sdkDetails = sdkInstance_tenantA
           
