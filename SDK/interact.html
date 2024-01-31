@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <h3>Test page of Interact SDK 0.9</h3>
+    <h3>Test page of Interact SDK 0.10</h3>
    
         <div class="sdk" index="">
          
@@ -289,6 +289,8 @@
             await sdkInstance_tenantA.toggleScreenSharing(sdkDetails.activeScreenSharing)
            
         }
+
+
 
         /////////////////////END!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -889,16 +891,7 @@
             appendLog('Transfer was finished: ', sdkDetails.index)
         }
 
-        function onScreenSharing(isEnable, sdkDetails) {
-            if (sdkDetails.activeScreenSharing === isEnable) {
-                return
-            }
-            sdkDetails.activeScreenSharing = isEnable
-            appendLog(
-                'Screen sharing was ' + (isEnable ? 'started' : 'stopped'),
-                sdkDetails.index
-            )
-        }
+
 
         function onRemoteScreenSharing(isActive, sdkDetails) {
             appendLog(
