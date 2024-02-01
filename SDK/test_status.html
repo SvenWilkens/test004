@@ -56,12 +56,9 @@
             init()
             async function init(){
              
-                let sdk = await CreateSdk()
-                await subscribeToPresence1('3c18c1f0-e796-4d9b-b2fc-f17e57db608f',sdk);
-                await subscribeToPresence1('bb740731-e90d-4255-b715-f3c293cbcd34',sdk);
+                let sdkInstance = await CreateSdk()
+                let contactIds = ['3c18c1f0-e796-4d9b-b2fc-f17e57db608f', 'bb740731-e90d-4255-b715-f3c293cbcd34'];
+                await SubscribeToPresences(contactIds,sdkInstance);
             }
-
-
-           
-        </script>   
+        </script>       
 </body>

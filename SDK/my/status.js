@@ -6,21 +6,30 @@ async function CreateSdk () {
     apiUrl: apiUrl,
     type: 'signalR'
   }
+  
   return new interactSDK(initSettings)
 }
 
-async function subscribeToPresence1 (contectGuid, sdkInstance) {
-  await sdkInstance.initPresence('signalR')
+async function SubscribeToPresences (contectGuids, sdkInstance) {
 
-  await sdkInstance.presence.on([
-    {
-      publicUserId: contectGuid,
-      callbacks: {
-        onChanged: p => onPresenceChanged1(p, 'contactStatus_' + contectGuid)
-      }
-    }
-  ])
-}
+    await sdkInstance.initPresence('signalR')
+    
+      let y = [];
+      contectGuids.forEach(contectGuid => {
+      y.push(
+          {
+              publicUserId: contectGuid,
+              callbacks: {
+                onChanged: p => onPresenceChanged1(p, 'contactStatus_' + contectGuid)
+              }
+            }
+    
+      )
+    });
+    
+    await sdkInstance.presence.on(y)
+}  
+
 
 function onPresenceChanged1 (presence, divId) {
   if (presence.presenceStatus === 'Away') {
