@@ -49,28 +49,32 @@
                 <span>SDK {index-template}</span><br />
                 <input id="agentName{index-template}"  type="hidden" />
                 <input id="serviceName{index-template} "type="hidden" />
-                <br /><span>UserName: </span>
+                <span>UserName: </span>
                 <input id="userName{index-template}" />
                 <input id="email{index-template}" type="hidden" />
-                <input typea="text" id="apiUrl{index-template}" type="hidden" value="https://interact.de-01.luware.cloud/api/interact/v1" /><br />
+                <input typea="text" id="apiUrl{index-template}" type="hidden" value="https://interact.de-01.luware.cloud/api/interact/v1" />
               
-                <input id="widgetKey{index-template}" type="hidden" value="e3ce8a5436134ff4a0148bd77fe73e7b" /><br />
-                <button id="initSDK{index-template}" onclick="initSDK(this)">Init sdk</button><br />
+                <input id="widgetKey{index-template}" type="hidden" value="e3ce8a5436134ff4a0148bd77fe73e7b" />
+                <button id="initSDK{index-template}" onclick="initSDK(this)" hidden>Init sdk</button>
             </div>
-            <div hidden="hidden">
-                <span>Token:</span><br /><textarea type="text" id="token{index-template}"></textarea><br /><button
+            <div  hidden="hidden">
+                <span>Token:</span><br /><textarea type="text" id="token{index-template}"></textarea>
+                <button
                     id="updateToken{index-template}" onclick="updateToken(this, 'token{index-template}')">
-                    Update Token {index-template}</button><br /><br />
+                    Update Token {index-template}</button>
             </div>
             <div>
-                <span>ContactId: </span><input id="contactId{index-template}" value="3c18c1f0-e796-4d9b-b2fc-f17e57db608f" /><br /><button
-                    id="getContactStatus{index-template}"
+                <input id="contactId{index-template}" type="hidden" value="3c18c1f0-e796-4d9b-b2fc-f17e57db608f" />
+                <button
+                    id="getContactStatus{index-template}" hidden
                     onclick="getContactStatus(this, 'contactId{index-template}', 'agentName{index-template}')">
                     getContactStatus
                 </button>
-                <button id="getContactPresence{index-template}"
+                <button id="getContactPresence{index-template}" hidden
                     onclick="getContactPresence(this, 'contactId{index-template}')">
-                    getContactPresence</button><br /><button title="startVideo{index-template}"
+                    getContactPresence
+                </button>
+                <button title="startVideo{index-template}"
                     onclick="startVideo(this)">
                     startVideo
                 </button>
@@ -80,16 +84,17 @@
                 <button title="stopCall{index-template}" onclick="stopCall(this)">
                     stopCall
                 </button>
-                <button title="getCallState{index-template}" onclick="getCallState(this)">
+                <button title="getCallState{index-template}" hidden onclick="getCallState(this)">
                     getCallState
                 </button>
-                <div>
-                    <span>Initial message: </span><input id="initial_message{index-template}" /><button
+                <div hidden="hidden">
+                    <span>Initial message: </span><input id="initial_message{index-template}" />
+                    <button
                         title="startChat{index-template}" onclick="startChatContact(this)">
                         startChat
                     </button>
                 </div>
-                <br />
+                
             </div>
             <hr />
             <div hidden="hidden">
@@ -235,11 +240,38 @@
             initValues(id)
             fillListOfDevices(id)
         }
+
+
         let firstSdk = document.getElementById('initSDK_1');
+        let firstSdk1 = document.getElementById('subscribeToPresenceOnly_1');
         initSDK(firstSdk);
+        subscribeToPresence(firstSdk);
         //TODO: add support
         interactSDK.errors(onError)
        // 
+
+
+       
+       
+       async function subscribeToPresence(firstSdk1) {
+        
+        let sdkDetails = getSdkDetails(firstSdk1)
+        await sdkDetails.sdk.initPresence('signalR')
+          //  let contactId = getQueryOrInputValue(nameId)
+        await sdkDetails.sdk.presence.on([
+            { 
+               publicUserId: '3c18c1f0-e796-4d9b-b2fc-f17e57db608f',
+               callbacks: { onChanged: onPresenceChanged1 }}
+     
+            ]);
+    }
+     
+ 
+      function onPresenceChanged1(presence) {
+        alert('111');
+       }
+
+
 
         function initValues(index) {
             setInputValueFromQuery(`userName${index}`)
