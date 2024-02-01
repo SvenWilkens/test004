@@ -85,28 +85,35 @@
                             Update devices
                         </button>
                    
-                 </div>
-                 <div style="display: block;">
-                    <div id="testVideo{index-template}" style="width: 50%; height:500px;background-color: cadetblue ;float: right ;"></div>
-                    <div id="testSelfVideo{index-template}" style="width:50%;height:500px;background-color: blueviolet; " ></div>
+                    </div>
+                    <div style="display: block;">
+                        <div id="testVideo{index-template}" style="width: 50%; height:500px;background-color: cadetblue ;float: right ;"></div>
+                    <div>
+                        <div id="testSelfVideo{index-template}" style="width:50%;height:500px;background-color: blueviolet; " >
+                    
+                        </div>
+                        <div  >
+                    
+                            <button id="toggleCamera" onclick="toggleCamera(this)" disabled="disabled">
+                            Can
+                            </button>
+                            <button id="toggleMute" onclick="toggleMute(this)" disabled="disabled">
+                                Audio 
+                            </button>
+                            <button id="screenSharing" onclick="changeScreenSharing(this)" >
+                                Teilen
+                            </button>
+                        </div>
+                    </div>
                     <div id="screensharing-id{index-template}" style="background-color: blue;height:500px;"></div>
                  </div>
             </div>
        
       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
+
+
+
+
        
         <div class="sdk" index="{index-template}" hidden="hidden">
             <div hidden="hidden">
@@ -160,7 +167,7 @@
                 </div>
                 
             </div>
-            <hr />
+       
             <div hidden="hidden">
                 <span>ServiceId: </span><input id="serviceId{index-template}" value="" /><br /><button
                     title="startVideo{index-template}" onclick="startVideo(this, true)">
@@ -178,7 +185,7 @@
                 <button id="getServiceStatus{index-template}"
                     onclick="getServiceStatus(this, 'serviceId{index-template}', 'serviceName{index-template}')">
                     getServiceStatus</button><br /><br />
-                <div>
+                <div hidden="hidden">
                     <span>Initial message: </span><input id="initial_service_message{index-template}" /><button
                         title="startChat{index-template}" onclick="startChat(this)">
                         startChat
@@ -211,9 +218,9 @@
                     disabled="disabled">
                     send Dtmf tone</button><br />
             </div>
-            <br /><br />
+   
             <div class="border" hidden="hidden">
-                <div style="margin: 5px">
+                <div style="margin: 5px" hidden="hidden">
                     <span>List of devices: </span><select id="videos_list{index-template}" class="dropdown">
                         <option value="0"></option>
                     </select><br /><span>List of speakers: </span><select id="audios_list{index-template}"
@@ -240,16 +247,16 @@
                         start/stop screenSharing
                     </button>
                 </div>
-                <br />
+           
             </div>
-            <br />
+          
             <div class="border" hidden="hidden">
                 <label>Presence</label><br /><span>ContactId 1: </span><input id="presence_contactId_1{index-template}"
                     value="" /><br /><span>ContactId 2: </span><input id="presence_contactId_2{index-template}"
                     value="" /><br /><span>ServiceId 1: </span><input id="presence_serviceId_1{index-template}"
                     value="" /><br /><span>ServiceId 2: </span><input id="presence_serviceId_2{index-template}"
                     value="" /><br />
-                <div>
+                <div hidden="hidden">
                     <button id="subscribeToPresenceOnly{index-template}" title="subscribeToPresenceOnly" onclick="subscribeToPresence(
                         this,
                          'presence_contactId_1{index-template}', 
@@ -268,7 +275,7 @@
                         unsubscribe
                     </button>
                 </div>
-                <br />
+
             </div>
             <div style="margin: 5px" hidden="hidden">
                 <span>Message: </span><input id="message{index-template}"
@@ -283,13 +290,13 @@
                     Delete
                 </button>
             </div>
-            <textarea id="details{index-template}"></textarea><audio id="testAudio{index-template}"
-                autoplay="true"></audio>
+            <textarea style="visibility: collapse;" id="details{index-template}"></textarea>
+            <audio id="testAudio{index-template}"       autoplay="true"></audio>
                 <video id="testPresentation{index-template}" autoplay="true"></video>
                 <video id="testScreenSharing{index-template}" autoplay="true"></video>
-            <div id="testVideo{index-template}" style="max-width: 450px"></div>
-            <div id="testSelfVideo{index-template}" style="max-width: 300px"></div>
-            <div id="screensharing-id{index-template}" style="max-width: 450px"></div>
+            <div hidden="hidden" id="testVideo{index-template}" style="max-width: 450px"></div>
+            <div hidden="hidden" id="testSelfVideo{index-template}" style="max-width: 300px"></div>
+            <div  hidden="hidden"id="screensharing-id{index-template}" style="max-width: 450px"></div>
         </div>
     </template>
     <script src="./nimbus.interact.sdk.js"></script>
