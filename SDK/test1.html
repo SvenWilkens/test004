@@ -107,8 +107,8 @@
        
        
        
-        <div class="sdk" index="{index-template}">
-            <div>
+        <div class="sdk" index="{index-template}" hidden="hidden">
+            <div hidden="hidden">
                 
                 <span>SDK {index-template}</span><br />
                 <input id="agentName{index-template}"  type="hidden" />
@@ -126,7 +126,7 @@
                     id="updateToken{index-template}" onclick="updateToken(this, 'token{index-template}')">
                     Update Token {index-template}</button>
             </div>
-            <div>
+            <div hidden="hidden">
                 <input id="contactId{index-template}" type="hidden" value="3c18c1f0-e796-4d9b-b2fc-f17e57db608f_11" />
                 <button
                     id="getContactStatus{index-template}" hidden
@@ -211,7 +211,7 @@
                     send Dtmf tone</button><br />
             </div>
             <br /><br />
-            <div class="border">
+            <div class="border" hidden="hidden">
                 <div style="margin: 5px">
                     <span>List of devices: </span><select id="videos_list{index-template}" class="dropdown">
                         <option value="0"></option>
@@ -225,7 +225,7 @@
                         Update devices
                     </button>
                 </div>
-                <div>
+                <div hidden="hidden">
                     <button id="changeCamera{index-template}" onclick="changeCamera(this)" disabled="disabled">
                         changeCamera
                     </button>
@@ -269,7 +269,7 @@
                 </div>
                 <br />
             </div>
-            <div style="margin: 5px">
+            <div style="margin: 5px" hidden="hidden">
                 <span>Message: </span><input id="message{index-template}"
                     onkeyup="sendTypingNotification(this)" /><button id="send{index-template}"
                     onclick="sendMessage(this)" disabled="disabled">
