@@ -18,7 +18,7 @@
             display: inline-block;
             border: 1px solid black;
             padding: 10px;
-            width: 500px;
+   
         }
 
         .border {
@@ -51,12 +51,13 @@
     <h3>Test page 1</h3>
     <template class="container">
        
-       <div style="background-color: bisque; display: block;">
+       <div style="background-color: bisque; display: block;" class="sdk" index="{index-template}">
        
                 <div  class="div1" style="background-color: aquamarine;">
         
                     UserName: 
                         <input id="userName{index-template}" />
+                        <button id="initSDK{index-template}" onclick="initSDK(this)" >Init sdk</button>
                         <button title="startVideo{index-template}"
                         onclick="startVideo(this)">
                         startVideo
@@ -127,7 +128,7 @@
                     Update Token {index-template}</button>
             </div>
             <div hidden="hidden">
-                <input id="contactId{index-template}" type="hidden" value="3c18c1f0-e796-4d9b-b2fc-f17e57db608f_11" />
+                <input id="contactId{index-template}" type="hidden" value="3c18c1f0-e796-4d9b-b2fc-f17e57db608f" />
                 <button
                     id="getContactStatus{index-template}" hidden
                     onclick="getContactStatus(this, 'contactId{index-template}', 'agentName{index-template}')">
@@ -296,6 +297,23 @@
     <script src="./my/call.js"></script>
     <script>
        
+       let _sdkByIndex = new Map()
+let sdkCount = 1
+
+for (let i = 1; i <= sdkCount; i++) {
+    let id = `_${i}`
+//    alert(id)
+    createSdk(id)
+    initValues(id)
+    fillListOfDevices(id)
+  
+    
+}
+
+
+//TODO: add support
+interactSDK.errors(onError)
+
     </script>
 </body>
 
