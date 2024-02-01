@@ -7,6 +7,7 @@
     <style>
         div {
             padding: 10px;
+           border: 1px solid black;
         }
 
         .container {
@@ -38,20 +39,81 @@
         .dropdown {
             max-width: 300px;
         }
+
+
+      
+
+ 
     </style>
 </head>
 
 <body>
     <h3>Test page 1</h3>
     <template class="container">
+       
+       <div style="background-color: bisque; display: block;">
+       
+                <div  class="div1" style="background-color: aquamarine;">
+        
+                    UserName: 
+                        <input id="userName{index-template}" />
+                        <button title="startVideo{index-template}"
+                        onclick="startVideo(this)">
+                        startVideo
+                    </button>
+                    <button title="startAudio{index-template}" onclick="startAudio(this)">
+                        startAudio
+                    </button>
+                    <button title="stopCall{index-template}" onclick="stopCall(this)">
+                        stopCall
+                    </button>
+                    <button title="startAudio{index-template}" onclick="startAudio(this)">
+                        Einstellungen
+                    </button>
+                </div>
+                    <div id="settings" class="div1" style="background-color: aqua;">
+                  
+                        <span>List of devices: </span><select id="videos_list{index-template}" class="dropdown">
+                            <option value="0"></option>
+                        </select><br /><span>List of speakers: </span><select id="audios_list{index-template}" class="dropdown">
+                            <option value="0"></option>
+                        </select><br /><span>List of microphones: </span><select id="microphones_list{index-template}"
+                            class="dropdown">
+                            <option value="0"></option>
+                        </select><br /><button title="update" onclick="updateDevices(this)">
+                            Update devices
+                        </button>
+                   
+                 </div>
+                 <div style="display: block;">
+                    <div id="testVideo{index-template}" style="width: 50%; height:500px;background-color: cadetblue ;float: right ;"></div>
+                    <div id="testSelfVideo{index-template}" style="width:50%;height:500px;background-color: blueviolet; " ></div>
+                    <div id="screensharing-id{index-template}" style="background-color: blue;height:500px;"></div>
+                 </div>
+            </div>
+       
+      
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
         <div class="sdk" index="{index-template}">
             <div>
                 
                 <span>SDK {index-template}</span><br />
                 <input id="agentName{index-template}"  type="hidden" />
                 <input id="serviceName{index-template} "type="hidden" />
-                <span>UserName: </span>
-                <input id="userName{index-template}" />
+              
                 <input id="email{index-template}" type="hidden" />
                 <input typea="text" id="apiUrl{index-template}" type="hidden" value="https://interact.de-01.luware.cloud/api/interact/v1" />
               
@@ -221,8 +283,9 @@
                 </button>
             </div>
             <textarea id="details{index-template}"></textarea><audio id="testAudio{index-template}"
-                autoplay="true"></audio><video id="testPresentation{index-template}" autoplay="true"></video><video
-                id="testScreenSharing{index-template}" autoplay="true"></video>
+                autoplay="true"></audio>
+                <video id="testPresentation{index-template}" autoplay="true"></video>
+                <video id="testScreenSharing{index-template}" autoplay="true"></video>
             <div id="testVideo{index-template}" style="max-width: 450px"></div>
             <div id="testSelfVideo{index-template}" style="max-width: 300px"></div>
             <div id="screensharing-id{index-template}" style="max-width: 450px"></div>
