@@ -3,7 +3,7 @@ let sdkCount = 1
 
 for (let i = 1; i <= sdkCount; i++) {
     let id = `_${i}`
-
+//    alert(id)
     createSdk(id)
     initValues(id)
     fillListOfDevices(id)
@@ -17,6 +17,8 @@ for (let i = 1; i <= sdkCount; i++) {
 //TODO: add support
 interactSDK.errors(onError)
 // 
+
+
 
 
 function initValues(index) {
