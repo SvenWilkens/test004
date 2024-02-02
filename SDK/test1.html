@@ -139,6 +139,58 @@
 						<button id="send{index-template}" onclick="sendMessage(this)" disabled="disabled"> send</button>
                         <textarea id="details{index-template}" hidden="hidden"></textarea>
                         <button id="sendTone{index-template}" title="sendTone{index-template}" onclick="sendTone(this)" disabled="disabled"> send Dtmf tone</button>
+                        <button id="subscribeToPresenceOnly{index-template}" title="subscribeToPresenceOnly" onclick="subscribeToPresence(
+                            this,
+                             'presence_contactId_1{index-template}', 
+                             'presence_contactId_2{index-template}',
+                             'presence_serviceId_1{index-template}',
+                             'presence_serviceId_2{index-template}')">
+                            subscribe
+                        </button>
+                        <button id="unsubscribeToPresenceOnly{index-template}" title="unsubscribeToPresenceOnly" onclick="unsubscribeToPresence(
+                            this,
+                             'presence_contactId_1{index-template}', 
+                             'presence_contactId_2{index-template}',
+                             'presence_serviceId_1{index-template}',
+                             'presence_serviceId_2{index-template}'
+                             )">
+                            unsubscribe
+                        </button>
+                        <button title="getCallState{index-template}" onclick="getCallState(this)">
+                            getCallState
+                        </button>
+                        <button id="getServiceStatus{index-template}"
+                            onclick="getServiceStatus(this, 'serviceId{index-template}', 'serviceName{index-template}')">
+                            getServiceStatus</button>
+                            <button title="stopChat{index-template}" onclick="stopChat(this)">
+                                stopChat
+                            </button>
+                            <button
+                            id="getContactStatus{index-template}" hidden
+                            onclick="getContactStatus(this, 'contactId{index-template}', 'agentName{index-template}')">
+                            getContactStatus
+                        </button>
+                        <button id="getContactPresence{index-template}" hidden
+                            onclick="getContactPresence(this, 'contactId{index-template}')">
+                            getContactPresence
+                        </button>
+                        <button title="getCallState{index-template}" hidden onclick="getCallState(this)">
+                            getCallState
+                        </button>
+                        <button
+                            title="startChat{index-template}" onclick="startChatContact(this)">
+                            startChat
+                        </button>
+                        <button
+                        id="updateToken{index-template}" onclick="updateToken(this, 'token{index-template}')">
+                        Update Token {index-template}</button>
+                        <input id="initial_message{index-template}" />
+                        <input id="initial_service_message{index-template}" />
+                       <input id="presence_contactId_1{index-template}"  value="" />
+                       <input id="presence_contactId_2{index-template}" value="" />
+                       <input id="presence_serviceId_1{index-template}"  value="" />
+                       <input id="presence_serviceId_2{index-template}" value="" />
+                       <input id="message{index-template}">
                  </div>
                 
             </div>
