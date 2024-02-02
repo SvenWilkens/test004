@@ -51,9 +51,9 @@
     <h3>Test page 1</h3>
     <template class="container">
        
-       <div style="background-color: bisque; display: block;" class="sdk" index="{index-template}">
+       <div style="background-color: white; display: block;" class="sdk" index="{index-template}">
        
-                <div  class="div1" style="background-color: aquamarine;">
+                <div  class="div1" style="background-color:white">
         
                     UserName: 
                         <input id="userName{index-template}" />
@@ -86,8 +86,8 @@
                         </button>
                    
                     </div>
-                    <div style="display: block;">
-                        <table style="width: 100%; min-height: 100px; table-layout: fixed;">
+                    <div style="display: block;" >
+                        <table style="width: 100%; min-height: 400px; table-layout: fixed;background-color:azure">
                             <tr>
                                 <td id="testSelfVideo{index-template}" style="max-width:50%;width: 50%; height: 100%; background-color:black ;text-align: center;" >
                                    <div id="selfVideoWait" hidden="hidden">
@@ -110,15 +110,13 @@
                                 </td>
                             </tr>
                         </table>
-                       
-                       
+                       <div hidden="hidden">
                         <audio id="testAudio{index-template}"       autoplay="true">1</audio>
                         <video id="testPresentation{index-template}" autoplay="true">2</video>
+                     
                         <video id="testScreenSharing{index-template}" autoplay="true">3</video>
-                  <!--   
-                    <div   id="testVideo{index-template}" style="max-width: 450px">4</div>
-                        <div  id="testSelfVideo{index-template}" style="max-width: 300px">5</div>
-                    -->
+                    </div>
+          
                        
                     </div>
                         <div  >
@@ -246,7 +244,7 @@
                         send Dtmf tone</button><br />
                 </div>
        
-                <div class="border" >
+                <div class="border" hidden="hidden">
                     <div style="margin: 5px" hidden="hidden">
                         <span>List of devices: </span><select id="videos_list{index-template}" class="dropdown">
                             <option value="0"></option>
@@ -304,7 +302,7 @@
                     </div>
     
                 </div>
-                <div style="margin: 5px" >
+                <div style="margin: 5px" hidden="hidden">
                     <span>Message: </span><input id="message{index-template}"
                         onkeyup="sendTypingNotification(this)" /><button id="send{index-template}"
                         onclick="sendMessage(this)" disabled="disabled">
@@ -317,7 +315,7 @@
                         Delete
                     </button>
                 </div>
-                <textarea id="details{index-template}"></textarea>
+                <textarea id="details{index-template}" hidden="hidden"></textarea>
                
             </div>
 
