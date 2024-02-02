@@ -195,6 +195,7 @@ async function startVideo(current, isService) {
         toneSequence = 0
 
         toggleButtons(false, index, false, isService)
+        AfterStartCall()
     } catch (e) {
         appendLog(
             `Conversation was not started ${JSON.stringify(e ?? '')}`,

@@ -57,9 +57,9 @@
         
                     UserName: 
                         <input id="userName{index-template}" />
-                        <button id="initSDK{index-template}" onclick="initSDK(this)" >Init sdk</button>
+                        <button id="initSDK{index-template}" onclick="initSDK(this)" hidden="hidden">Init sdk</button>
                         <button title="startVideo{index-template}"
-                        onclick="startVideo(this)">
+                        onclick="BeforeStartCall(this)">
                         startVideo
                     </button>
                     <button title="startAudio{index-template}" onclick="startAudio(this)">
@@ -68,11 +68,11 @@
                     <button title="stopCall{index-template}" onclick="stopCall(this)">
                         stopCall
                     </button>
-                    <button title="startAudio{index-template}" onclick="startAudio(this)">
+                    <button title="startAudio{index-template}" onclick="ChangeSettings('settings',this)">
                         Einstellungen
                     </button>
                 </div>
-                    <div id="settings" class="div1" style="background-color: aqua;">
+                    <div id="settings" class="div1"  hidden="hidden">
                   
                         <span>List of devices: </span><select id="videos_list{index-template}" class="dropdown">
                             <option value="0"></option>
@@ -89,14 +89,14 @@
                     <div style="display: block;">
                         <table style="width: 100%; min-height: 100px; table-layout: fixed;">
                             <tr>
-                                <td id="testSelfVideo{index-template}" style="max-width:50%;width: 50%; height: 100%; background-color:black ;" >
+                                <td id="testSelfVideo{index-template}" style="max-width:50%;width: 50%; height: 100%; background-color:black ;text-align: center;" >
                                    
-                                   
+                                   <img id="selfVideoWait"  src="my/wait.gif" style="visibility: hidden;">
                             
                                 </td>
-                                <td  id="testVideo{index-template}" style="max-width:50%;width: 50%; height: 100%; background-color: blue;">
+                                <td  id="testVideo{index-template}" style="max-width:50%;width: 50%; height: 100%; background-color: black;text-align: center;">
                                    
-                                    
+                                    <img id="remoteVideoWait"  src="my/wait.gif" style="visibility: hidden;">
                                    
                                  
                                 </td>
@@ -326,7 +326,7 @@
     <script src="./nimbus.interact.presences.sdk.js"></script>
     <script src="./my/call.js"></script>
     <script>
-       
+       let isSettingsVisible = false;
        let _sdkByIndex = new Map()
        let sdkCount = 1
 
@@ -336,14 +336,44 @@
             createSdk(id)
             initValues(id)
             fillListOfDevices(id)
-        
+            
             
         }
-
+        var botton = document.getElementById('initSDK_1')
+        initSDK(botton)
 
         //TODO: add support
         interactSDK.errors(onError)
 
+        async function BeforeStartCall(button){
+            var image = document.getElementById('selfVideoWait')
+            image.style.visibility = 'visible';
+            var remoteImage = document.getElementById('remoteVideoWait')
+            remoteImage.style.visibility = 'visible';
+            startVideo(button)
+        }
+
+
+
+        async function AfterStartCall(){
+            var image = document.getElementById('selfVideoWait')
+            image.style.visibility = 'hidden';
+            var remoteImage = document.getElementById('remoteVideoWait')
+            remoteImage.style.visibility = 'hidden';
+        }
+
+        async function ChangeSettings(settingsDivId, botton){
+            var div = document.getElementById(settingsDivId)
+            if(isSettingsVisible){    
+                
+                div.hidden = false
+                isSettingsVisible = false;
+            }
+            else{    
+                div.hidden = true
+                isSettingsVisible = true;
+            }
+        }
     </script>
 </body>
 
