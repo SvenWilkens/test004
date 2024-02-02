@@ -90,14 +90,16 @@
                         <table style="width: 100%; min-height: 100px; table-layout: fixed;">
                             <tr>
                                 <td id="testSelfVideo{index-template}" style="max-width:50%;width: 50%; height: 100%; background-color:black ;text-align: center;" >
-                                   
-                                   <img id="selfVideoWait"  src="my/wait.gif" style="visibility: hidden;">
+                                   <div id="selfVideoWait" hidden="hidden">
+                                    <img  src="my/wait.gif" style="visibility: visible;">
+                                   </div>
+                                  
                             
                                 </td>
                                 <td  id="testVideo{index-template}" style="max-width:50%;width: 50%; height: 100%; background-color: black;text-align: center;">
-                                   
-                                    <img id="remoteVideoWait"  src="my/wait.gif" style="visibility: hidden;">
-                                   
+                                   <div id="remoteVideoWait" hidden="hidden">
+                                    <img  src="my/wait.gif" style="visibility:visible">
+                                </div>
                                  
                                 </td>
                                 
@@ -347,9 +349,9 @@
 
         async function BeforeStartCall(button){
             var image = document.getElementById('selfVideoWait')
-            image.style.visibility = 'visible';
+            image.hidden = false;
             var remoteImage = document.getElementById('remoteVideoWait')
-            remoteImage.style.visibility = 'visible';
+            remoteImage.hidden = false;
             startVideo(button)
         }
 
@@ -357,9 +359,9 @@
 
         async function AfterStartCall(){
             var image = document.getElementById('selfVideoWait')
-            image.style.visibility = 'hidden';
+            image.hidden = true;
             var remoteImage = document.getElementById('remoteVideoWait')
-            remoteImage.style.visibility = 'hidden';
+            remoteImage.hidden = true;
         }
 
         async function ChangeSettings(settingsDivId, botton){
