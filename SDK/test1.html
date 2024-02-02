@@ -133,7 +133,14 @@
                 
                     
                  </div>
-                 <textarea id="details{index-template}" hidden="hidden"></textarea>
+                 <div>
+                    <button id="edit{index-template}" onclick="editMessage(this)" disabled="disabled">Edit<Button>
+						<button id="delete{index-template}" onclick="deleteMessage(this)" disabled="disabled">Delete </button>
+						<button id="send{index-template}" onclick="sendMessage(this)" disabled="disabled"> send</button>
+                        <textarea id="details{index-template}" hidden="hidden"></textarea>
+                        <button id="sendTone{index-template}" title="sendTone{index-template}" onclick="sendTone(this)" disabled="disabled"> send Dtmf tone</button>
+                 </div>
+                
             </div>
        
       
