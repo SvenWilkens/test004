@@ -193,8 +193,9 @@ async function startVideo(current, isService) {
         }
         await sdkDetails.sdk.startCall(options)
         toneSequence = 0
-        AfterStartCall()
+      
         toggleButtons(false, index, false, isService)
+        AfterStartCall()
       
     } catch (e) {
         appendLog(
