@@ -120,13 +120,13 @@
                     </div>
                         <div  >
                     
-                            <button id="toggleCamera" onclick="toggleCamera(this)" disabled ">
+                            <button id="toggleCamera{index-template}" onclick="toggleCamera(this)" disabled ">
                                 Kamera
                             </button>
-                            <button id="toggleMute" onclick="toggleMute(this)" disabled >
+                            <button id="toggleMute{index-template}" onclick="toggleMute(this)" disabled >
                                 Audio 
                             </button>
-                            <button id="screenSharing" onclick="changeScreenSharing(this)" disabled>
+                            <button id="screenSharing{index-template}" onclick="changeScreenSharing(this)" disabled>
                                 Teilen
                             </button>
                         </div>
@@ -231,7 +231,7 @@
         //TODO: add support
         interactSDK.errors(onError)
 
-        
+       // toggleButtons(false, '_1', false, false)
 
 
         async function setName(button){
