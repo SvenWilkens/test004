@@ -41,8 +41,8 @@
        <div style="background-color: white; display: block;" class="sdk" index="{index-template}">
             <input id="widgetKey{index-template}" type="hidden" value="e3ce8a5436134ff4a0148bd77fe73e7b" />
             <input typea="text" id="apiUrl{index-template}" type="hidden" value="https://interact.de-01.luware.cloud/api/interact/v1" />
-            <input id="contactId{index-template}" type="hidden" value="3c18c1f0-e796-4d9b-b2fc-f17e57db608f" />
-                <div  class="div1" style="background-color:white; padding: 10px;">
+            <input id="contactId{index-template}" value="" />
+            <div  class="div1" style="background-color:white; padding: 10px;">
         
                     UserName: 
                         <input id="userName{index-template}" />
@@ -206,6 +206,12 @@
             
             
         }
+        // test1.html?contactId=3c18c1f0-e796-4d9b-b2fc-f17e57db608f
+            const urlParams = new URLSearchParams(window.location.search);
+            const contactId = urlParams.get('contactId');
+            document.getElementById('contactId_1').value = contactId;
+       
+
   
         interactSDK.errors(onError)
 
