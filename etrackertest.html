@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <! – Copyright (c) 2000-2021 etracker GmbH. All rights reserved. – >
+        <! – This material may not be reproduced, displayed, modified or distributed – >
+        <! – without the express prior written permission of the copyright holder. – >
+        <! – etracker tracklet 5.0 – >
+        <script type="text/javascript">
+           var et_pagename     = "Startseite";
+           var et_areas    = "Privatkunden";
+        // var et_tval = 0;
+        // var et_tsale = 0;
+        // var et_tonr = "";
+        // var et_basket = "";
+        </script>
+        <script id="_etLoader" type="text/javascript" charset="UTF-8" data-block-cookies="true" data-respect-dnt="true" data-secure-code="hS9YD3" src="//code.etracker.com/code/e.js" async></script>
+        <! – etracker tracklet 5.0 end – >
+    </head>
+    <body>
+     
+        etracker - Test Page 
+        <br>
+        
+        <input type="button" value="Test" onmousedown="_etracker.sendEvent(new et_UserDefinedEvent('Objektname', 'Kategorie', 'Aktion', 'Typ'))"> 
+        <input type="button" value="Name" onmousedown="_etracker.sendEvent(new et_UserDefinedEvent('DigitaleFiliale_Kontokarte_Termin'))"> 
+        <! ??? was wird bei dem v-etracker gemacht ???? >
+        <div  v-etracker="{ name: 'PKImmobilienverkauf_Boersenuebersicht_FlyoutTeaser', recursive: true }"></div>
+    </body>
+</html>
